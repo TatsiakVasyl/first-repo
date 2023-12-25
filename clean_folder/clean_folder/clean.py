@@ -89,13 +89,13 @@ def print_results(known_extensions, unknown_extensions, categories):
         else:
             print("No files in this category.")
 
-if __name__ == '__main__':
-    path = sys.argv[1]
-    print(f'Start in {path}')
+def main():
+    path = sys.argv[1] if len(sys.argv) > 1 else '.'
+    print(f'Starting in {path}')
 
     target_folder = Path(path)
     target_folder.mkdir(exist_ok=True)
-    
+
     known_extensions = set()
     unknown_extensions = set()
 
@@ -107,5 +107,8 @@ if __name__ == '__main__':
 
     process_folder(target_folder, known_extensions, unknown_extensions)
     remove_empty_folders(target_folder)
-    
+
     print_results(known_extensions, unknown_extensions, categories)
+
+if __name__ == '__main__':
+    main()
